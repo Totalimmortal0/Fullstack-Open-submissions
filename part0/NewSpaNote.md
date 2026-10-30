@@ -10,5 +10,5 @@
     Note left of server: The servers responds with a status code 201
     server-->>browser: HTTP status code 201
     
-    Note right of browser: The browser then uses the JS code it fetched from the server to create a new note
+    Note right of browser: The browser then uses a function to render the new note
 ```
