@@ -5,12 +5,17 @@ const Statistic = ({good, neutral, bad, total, average, positive}) => {
     return (
       <div className='stats'>
         <h1>Statistic</h1>
-        <StatisticLine name="Good" value={good}/>
-        <StatisticLine name="Neutral" value={neutral}/>
-        <StatisticLine name="Bad" value={bad}/>
-        <StatisticLine name="All" value={total}/>
-        <StatisticLine name="Average" value={average}/>
-        <StatisticLine name="Positive" value={positive}/>
+        <table>
+          <tbody>
+            <StatisticLine name="Good" value={good}/>
+            <StatisticLine name="Neutral" value={neutral}/>
+            <StatisticLine name="Bad" value={bad}/>
+            <StatisticLine name="All" value={total}/>
+            <StatisticLine name="Average" value={average}/>
+            <StatisticLine name="Positive" value={positive}/>
+          </tbody>
+        </table>
+
       </div>
     )
   } else {
@@ -20,15 +25,18 @@ const Statistic = ({good, neutral, bad, total, average, positive}) => {
   }
 }
 
-const Button = ({text, handlerFunc}) => {
-  return (
-    <button onClick={handlerFunc}>{text}</button>
+const StatisticLine = ({name, value}) => {
+  return(
+    <tr>
+      <th scope='row'>{name}</th>
+      <td>{value}</td>
+    </tr>
   )
 }
 
-const StatisticLine = ({name, value}) => {
-  return(
-    <p>{name}: {value}</p>
+const Button = ({text, handlerFunc}) => {
+  return (
+    <button onClick={handlerFunc}>{text}</button>
   )
 }
 
@@ -50,8 +58,8 @@ const App = () => {
   }
 
   const total = good + neutral + bad
-  const average = (good - bad) / total
-  const positivePercentage = (good / total) * 100
+  const average = ((good - bad) / total).toFixed(1)
+  const positivePercentage = ((good / total) * 100).toFixed(1) + "%"
 
   return (
     <>
