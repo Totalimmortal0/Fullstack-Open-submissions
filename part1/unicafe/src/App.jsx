@@ -18,6 +18,10 @@ const App = () => {
     setBad(bad + 1)
   }
 
+  const total = good + neutral + bad
+  const average = (good - bad) / total
+  const positivePercentage = (good / total) * 100
+
   return (
     <>
       <div>
@@ -32,6 +36,10 @@ const App = () => {
         <h3>Good: {good}</h3>
         <h3>Neutral: {neutral}</h3>
         <h3>Bad: {bad}</h3>
+        <h2>All: {total}</h2>
+
+        <h2>Average: {!Number.isNaN(average) ?  average : ""} </h2>
+        <h2>Positive: {!Number.isNaN(positivePercentage) ?  positivePercentage : ""}%</h2>
       </div>
     </>
   )
