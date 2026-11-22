@@ -5,12 +5,12 @@ const Statistic = ({good, neutral, bad, total, average, positive}) => {
     return (
       <div className='stats'>
         <h1>Statistic</h1>
-        <h3>Good: {good}</h3>
-        <h3>Neutral: {neutral}</h3>
-        <h3>Bad: {bad}</h3>
-        <h2>All: {total}</h2>
-        <h2>Average: {!Number.isNaN(average) ?  average : ""} </h2>
-        <h2>Positive: {!Number.isNaN(positive) ?  positive : ""}%</h2>
+        <StatisticLine name="Good" value={good}/>
+        <StatisticLine name="Neutral" value={neutral}/>
+        <StatisticLine name="Bad" value={bad}/>
+        <StatisticLine name="All" value={total}/>
+        <StatisticLine name="Average" value={average}/>
+        <StatisticLine name="Positive" value={positive}/>
       </div>
     )
   } else {
@@ -23,6 +23,12 @@ const Statistic = ({good, neutral, bad, total, average, positive}) => {
 const Button = ({text, handlerFunc}) => {
   return (
     <button onClick={handlerFunc}>{text}</button>
+  )
+}
+
+const StatisticLine = ({name, value}) => {
+  return(
+    <p>{name}: {value}</p>
   )
 }
 
