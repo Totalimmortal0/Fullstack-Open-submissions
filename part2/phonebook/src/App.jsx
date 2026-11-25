@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Person from './components/Person'
+import NewPersonForm from './components/NewPersonForm'
+import Search from './components/Search'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -22,6 +24,7 @@ const App = () => {
       const nameObject = {
         name: newName,
         phone: newPhone,
+        id: persons[persons.length - 1].id + 1
       }
 
       setPersons(persons.concat(nameObject))
@@ -48,17 +51,17 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>Search: <input onChange={handleFilter}/></div>
-      <h2>Add New</h2>
-      <form onSubmit={addPerson}>
-        <div>name: <input value={newName} onChange={handleNameInput}/></div>
-        <div>number: <input value={newPhone} onChange={handlePhoneInput}/></div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <Search handler={handleFilter}/>
+      <h3>Add New</h3>
+      <NewPersonForm 
+        onSubmit={addPerson}
+        nameValue={newName}
+        nameHandler={handleNameInput}
+        phoneValue={newPhone}
+        phoneHandler={handlePhoneInput}
+        />
 
-      <h2>Numbers</h2>
+      <h3>Numbers</h3>
       {personsToShow.map(person => <Person key={person.id} name={person.name} phone={person.phone}/>)}
 
       {/* <div>debug: {newName}</div> */}
