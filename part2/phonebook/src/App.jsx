@@ -9,11 +9,18 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
-    const nameObject = {
-      name: newName,
+
+    const alreadyInList = persons.find((person) => person.name === newName)
+    if (alreadyInList) {
+      alert(`${newName} is already on the list`)
+    } else {
+      const nameObject = {
+        name: newName,
+      }
+
+      setPersons(persons.concat(nameObject))
+      setNewName("")
     }
-    setPersons(persons.concat(nameObject))
-    setNewName("")
   }
 
   const handleNameInput = (event) => {
